@@ -3532,4 +3532,4 @@ function Query() {
   console.log("Test");
 }
 
-module.exports = {Query};
+return {Query};
