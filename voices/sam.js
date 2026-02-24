@@ -13,7 +13,7 @@ function sanitizeFilename(filename) {
  * @param {String} filetype 
  */
 function getFilePath(voice, text, filetype) {
-    return `./outputs/${sanitizeFilename(voice)}/${sanitizeFilename(text)}.${filetype}`;
+    return `${sanitizeFilename(voice)}/${sanitizeFilename(text)}.${filetype}`;
 }
 
 async function fetchSAMVoice(voice, text, speed, pitch) {
