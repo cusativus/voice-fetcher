@@ -1,7 +1,7 @@
 BetterSAM
 SAM
 Acapella Group
-Google Translate
+Google-Translate
 TikTok
 iSpeech
 Read-Aloud
