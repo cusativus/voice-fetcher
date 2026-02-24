@@ -3528,6 +3528,14 @@ SamJs.buf8 = buf8;
 SamJs.buf32 = buf32;
 SamJs.convert = convert;
 
+function sanitizeFilename(filename) {
+    // Replace illegal characters with an underscore
+    const sanitized = filename.replace(/<\/?[<>:"\/\\|?*\x00-\x1F]/g, '_');
+
+    // Optional: replace spaces with underscores/dashes and convert to lowercase
+    return sanitized.replace(/\s/g, '_').toLowerCase();
+}
+
 function Query(text, options) {
     const pitch = options.pitch;
     const speed = options.speed;
@@ -3535,7 +3543,10 @@ function Query(text, options) {
     const throat = options.throat;
     const singmode = options.singmode;
     const SAM = new SamJs({ pitch, speed, mouth, throat, singmode });
-    return SAM.download(text);
+    return {
+        filepath: `bettersam/p${pitch}s${speed}m${mouth}t${throat}/${sanitizeFilename(text)}.wav`,
+        bytes: SAM.download(text)
+    };
 }
 
 function Choices() {
