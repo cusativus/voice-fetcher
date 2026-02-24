@@ -77,14 +77,45 @@ function Choices() {
             text: `Input Voice\n${constructList(voices)}`,
             type: "array",
             array: voices
+        },
+        pitch: {
+            text: async function(options) {
+                const limitations = JSON.parse(await (await fetch(`https://www.tetyys.com/SAPI4/VoiceLimitations?voice=${encodeURIComponent(options.voice)}`)).text());
+                return `Enter "Pitch" (${limitations.minPitch}-${limitations.maxPitch} Default ${limitations.defPitch})`;
+            },
+            type: "number",
+            min: async function(options) {
+                const limitations = JSON.parse(await (await fetch(`https://www.tetyys.com/SAPI4/VoiceLimitations?voice=${encodeURIComponent(options.voice)}`)).text());
+                return limitations.minPitch;
+            },
+            max: async function(options) {
+                const limitations = JSON.parse(await (await fetch(`https://www.tetyys.com/SAPI4/VoiceLimitations?voice=${encodeURIComponent(options.voice)}`)).text());
+                return limitations.maxPitch;
+            },
+        },
+        speed: {
+            text: async function(options) {
+                const limitations = JSON.parse(await (await fetch(`https://www.tetyys.com/SAPI4/VoiceLimitations?voice=${encodeURIComponent(options.voice)}`)).text());
+                return `Enter "Speed" (${limitations.minSpeed}-${limitations.maxSpeed} Default ${limitations.defSpeed})`;
+            },
+            type: "number",
+            min: async function(options) {
+                const limitations = JSON.parse(await (await fetch(`https://www.tetyys.com/SAPI4/VoiceLimitations?voice=${encodeURIComponent(options.voice)}`)).text());
+                return limitations.minSpeed;
+            },
+            max: async function(options) {
+                const limitations = JSON.parse(await (await fetch(`https://www.tetyys.com/SAPI4/VoiceLimitations?voice=${encodeURIComponent(options.voice)}`)).text());
+                return limitations.maxSpeed;
+            },
         }
     };
 }
 
 async function Query(text, options) {
     const voice = options.voice;
-    const limitations = JSON.parse(await (await fetch(`https://www.tetyys.com/SAPI4/VoiceLimitations?voice=${encodeURIComponent(voice)}`)).text());
-    return await fetchSAMVoice(voice, text, limitations.defSpeed, limitations.defPitch);
+    const speed = options.speed;
+    const pitch = options.pitch;
+    return await fetchSAMVoice(voice, text, speed, pitch);
 }
 
 module.exports = {Query, Choices}
