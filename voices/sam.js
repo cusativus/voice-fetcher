@@ -1,3 +1,5 @@
+// ts pmo
+
 function sanitizeFilename(filename) {
     // Replace illegal characters with an underscore
     const sanitized = filename.replace(/<\/?[<>:"\/\\|?*\x00-\x1F]/g, '_');
