@@ -3528,17 +3528,14 @@ SamJs.buf8 = buf8;
 SamJs.buf32 = buf32;
 SamJs.convert = convert;
 
-function Query(options) {
+function Query(text, options) {
     const pitch = options.pitch;
     const speed = options.speed;
     const mouth = options.mouth;
     const throat = options.throat;
     const singmode = options.singmode;
-    console.log("Pitch", pitch);
-    console.log("Speed", speed);
-    console.log("Mouth", mouth);
-    console.log("Throat", throat);
-    console.log("Sing Mode", singmode);
+    const SAM = new SamJs({ pitch, speed, mouth, throat, singmode });
+    return SAM.download(text);
 }
 
 function Choices() {
