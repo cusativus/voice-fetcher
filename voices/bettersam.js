@@ -3535,10 +3535,7 @@ function Query(text, options) {
     const throat = options.throat;
     const singmode = options.singmode;
     const SAM = new SamJs({ pitch, speed, mouth, throat, singmode });
-    return {
-        filepath: `bettersam/p${pitch}s${speed}m${mouth}t${throat}/${Date.now()}.wav`,
-        bytes: SAM.download(text)
-    };
+    return SAM.download(text);
 }
 
 function Choices() {
