@@ -3528,8 +3528,50 @@ SamJs.buf8 = buf8;
 SamJs.buf32 = buf32;
 SamJs.convert = convert;
 
-function Query() {
-  console.log("Test");
+function Query(options) {
+    const pitch = options.pitch;
+    const speed = options.speed;
+    const mouth = options.mouth;
+    const throat = options.throat;
+    const singmode = options.singmode;
+    console.log("Pitch", pitch);
+    console.log("Speed", speed);
+    console.log("Mouth", mouth);
+    console.log("Throat", throat);
+    console.log("Sing Mode", singmode);
 }
 
-module.exports = {Query: Query};
+function Choices() {
+    return {
+        pitch: {
+            text: `Enter "Pitch" (0-255 Default 64)`,
+            type: "number",
+            min: 0,
+            max: 255
+        },
+        speed: {
+            text: `Enter "Speed" (1-255 Default 72)`,
+            type: "number",
+            min: 1,
+            max: 255
+        },
+        mouth: {
+            text: `Enter "Mouth" (0-255 Default 128)`,
+            type: "number",
+            min: 0,
+            max: 255
+        },
+        throat: {
+            text: `Enter "Throat" (0-255 Default 128)`,
+            type: "number",
+            min: 0,
+            max: 255
+        },
+        singmode: {
+            text: `Enable Sing Mode? Y/N`,
+            type: "boolean"
+        }
+    }
+}
+
+module.exports = {Query, Choices};
