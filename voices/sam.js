@@ -66,7 +66,7 @@ function constructList(array) {
     for (let i = 0; i < array.length; i++) {
         const element = array[i];
         if (i > 0) list += "\n";
-        list += `${i} ${element}${Object.keys(buggedServices).includes(element) ? " (BUGGED)" : ""}`;
+        list += `${i} ${element}`;
     }
     return list;
 }
