@@ -82,11 +82,12 @@ async function Query(text, options) {
     const data = await synth.Animalese(text, false, options.pitch / 100);
     return {
         filepath: `animalese/p${options.pitch}/${sanitizeFilename(text)}.wav`,
-        bytes: new Uint8Array(data.wav)
+        bytes: new Uint8Array(data)
     };
 }
 
 function Choices() {
+    console.log("Credits: Josh Simmons\nhttp://github.com/acedio/animalese.js")
     return {
         pitch: {
             text: `Enter "Pitch" (20-200 Default 100)`,
