@@ -87,7 +87,6 @@ async function Query(text, options) {
 }
 
 function Choices() {
-    console.log("Credits: Josh Simmons\nhttp://github.com/acedio/animalese.js")
     return {
         pitch: {
             text: `Enter "Pitch" (20-200 Default 100)`,
@@ -98,4 +97,5 @@ function Choices() {
     }
 }
 
+console.log("Credits: Josh Simmons\nhttp://github.com/acedio/animalese.js");
 module.exports = {Query, Choices}
