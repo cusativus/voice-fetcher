@@ -1,3 +1,4 @@
+const fs = require("node:fs");
 // animalese.js
 // (C) 2014 Josh Simmons
 // http://github.com/acedio/animalese.js
@@ -69,10 +70,21 @@ var Animalese = async function () {
     return obj;
 }
 
+function sanitizeFilename(filename) {
+    // Replace illegal characters with an underscore
+    const sanitized = filename.replace(/<\/?[<>:"\/\\|?*\x00-\x1F]/g, '_');
+
+    // Optional: replace spaces with underscores/dashes and convert to lowercase
+    return sanitized.replace(/\s/g, '_').toLowerCase();
+}
+
 async function Query(text, options) {
     var synth = await Animalese();
     const data = await synth.Animalese(text, false, options.pitch / 100);
-    return new Uint8Array(data.wav);
+    return {
+        filepath: `animalese/p${options.pitch}/${sanitizeFilename(text)}.wav`,
+        bytes: data
+    };
 }
 
 function Choices() {
