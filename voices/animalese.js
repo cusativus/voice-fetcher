@@ -97,5 +97,5 @@ function Choices() {
     }
 }
 
-console.log("Credits: Josh Simmons\nhttp://github.com/acedio/animalese.js");
+console.log("(C) 2014 Josh Simmons\nhttp://github.com/acedio/animalese.js");
 module.exports = {Query, Choices}
