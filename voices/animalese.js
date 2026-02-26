@@ -1,4 +1,3 @@
-const fs = require("node:fs");
 // animalese.js
 // (C) 2014 Josh Simmons
 // http://github.com/acedio/animalese.js
@@ -83,7 +82,7 @@ async function Query(text, options) {
     const data = await synth.Animalese(text, false, options.pitch / 100);
     return {
         filepath: `animalese/p${options.pitch}/${sanitizeFilename(text)}.wav`,
-        bytes: data
+        bytes: new Uint8Array(data)
     };
 }
 
